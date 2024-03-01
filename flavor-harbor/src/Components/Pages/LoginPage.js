@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Registration from "./registration";
 
 const LoginPage = () => {
   // State for input values
@@ -18,6 +19,9 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
+      <h2>
+        <Registration />
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
