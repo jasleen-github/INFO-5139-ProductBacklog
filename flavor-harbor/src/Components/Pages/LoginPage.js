@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Registration from "./registration";
 
-const LoginPage = () => {
+const LoginPage = ({ togglePage }) => {
   // State for input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,9 +18,7 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <h2>
-        <Registration />
-      </h2>
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
@@ -45,6 +42,10 @@ const LoginPage = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <p>
+        Don't have an account?{" "}
+        <button onClick={togglePage}>Register here</button>
+      </p>
     </div>
   );
 };
