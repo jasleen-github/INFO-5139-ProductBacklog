@@ -1,10 +1,14 @@
 import React from "react";
-
+import "../../assets/Styles/Header.css";
+import { MdOutlineFoodBank } from "react-icons/md";
 const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        <h1>FlavorHarbor</h1>
+        <h1>
+          <MdOutlineFoodBank />
+          FlavorHarbor
+        </h1>
         <nav>
           <ul>
             <li>
