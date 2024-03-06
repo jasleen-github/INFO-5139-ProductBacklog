@@ -1,0 +1,51 @@
+/* Header.css */
+.header {
+  background-color: purple;
+  color: #fff; /* Text color for better contrast */
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container h1 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 24px;
+}
+
+.container h1 svg {
+  font-size: 28px;
+  margin-right: 10px;
+  color: #fff; /* Match text color */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  color: #fff; /* Match text color */
+  text-decoration: none;
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
