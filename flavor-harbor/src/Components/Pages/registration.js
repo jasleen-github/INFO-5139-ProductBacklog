@@ -110,7 +110,9 @@ const Registration = ({ togglePage }) => {
       </form>
       <p>
         Already have an account?{" "}
-        <button onClick={togglePage} className="login-button" >Login here</button>
+        <button onClick={togglePage} className="login-button">
+          Login here
+        </button>
       </p>
     </div>
   );

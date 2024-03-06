@@ -1,6 +1,8 @@
 import React from "react";
 import "../../assets/Styles/Header.css";
+// import { Link } from "react-router-dom";
 import { MdOutlineFoodBank } from "react-icons/md";
+//import Homepage from "./Homepage";
 const Header = () => {
   return (
     <header className="header">
@@ -12,7 +14,7 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="/">Home</a>
+              <a href="/recipes">Home</a>
             </li>
             <li>
               <a href="/recipes">Recipes</a>
