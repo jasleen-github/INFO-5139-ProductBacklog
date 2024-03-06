@@ -1,16 +1,11 @@
-<<<<<<< Updated upstream
-// App.js
 
-import React, { useState } from "react";
-=======
 
-import React from "react";
-import Login from "./Components/Pages/LoginPage";
->>>>>>> Stashed changes
+import React, {useState} from "react";
+
 import Header from "./Components/Pages/Header";
 import Footer from "./Components/Pages/Footer";
 import Login from "./Components/Pages/LoginPage";
-import Registration from "./Components/Pages/registration";
+import Registration from "./Components/Pages/Registration";
 
 const App = () => {
   const [isLoginPage, setIsLoginPage] = useState(true); // State variable to track whether the user is in the login page

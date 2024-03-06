@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import "../../assets/Styles/Registration.css"; // Correct import path
 
 import { auth, firestore } from "../../firebaseConfig"; // Import the Firebase authentication object
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+
 const Registration = ({ togglePage }) => {
   // State variables to hold form data
   const [firstname, setFirstname] = useState("");
@@ -14,23 +16,6 @@ const Registration = ({ togglePage }) => {
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // try {
-    //   // Create user with email and password using Firebase
-    //   await auth.createUserWithEmailAndPassword(email, password);
-    //   // Update user profile with the provided username
-    //   await auth.currentUser.updateProfile({
-    //     displayName: username,
-    //   });
-    //   // Log success message
-    //   console.log("User registered successfully!");
-    //   // Clear form fields after successful registration
-    //   setUsername("");
-    //   setEmail("");
-    //   setPassword("");
-    // } catch (error) {
-    //   // Log any errors that occur during registration
-    //   console.error("Registration failed:", error.message);
-    // }
     createUserWithEmailAndPassword(auth, email, password)
       .then(async () => {
         console.log("User Registered");
@@ -68,7 +53,7 @@ const Registration = ({ togglePage }) => {
   };
 
   return (
-    <div>
+    <div className="registration-container">
       <h2>Registration</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -125,7 +110,7 @@ const Registration = ({ togglePage }) => {
       </form>
       <p>
         Already have an account?{" "}
-        <button onClick={togglePage}>Login here</button>
+        <button onClick={togglePage} className="login-button" >Login here</button>
       </p>
     </div>
   );
