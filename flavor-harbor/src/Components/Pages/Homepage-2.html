@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorHarbor - A Culinary Community</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #967115;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px;
+            color: white;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 50px;
+            background-color: #ffd700;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #7c5501;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .featured-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #967115;
+            flex-wrap: wrap;
+        }
+
+        .featured-box {
+            text-align: center;
+            padding: 20px;
+            flex: 0 1 calc(33.33% - 20px); 
+            box-sizing: border-box;
+        }
+
+        .featured-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .featured-recipes {
+            text-align: center;
+            background-color: #ffd700;
+            padding: 50px;
+        }
+
+        .recipe-card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .recipe-box {
+            text-align: left;
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="flavorharbor-logo.png" alt="FlavorHarbor Logo">
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">Learn</a>
+        <a href="#">Community</a>
+        <a href="#">Marketplace</a>
+        <a href="#">Sign In/Sign Up</a>
+    </nav>
+
+    <div class="hero-section">
+        <h1>Explore, Share, and Celebrate Culinary Delights!</h1>
+        <a href="#" class="cta-button">Get Started</a>
+    </div>
+
+    <div class="featured-section">
+        <div class="featured-box">
+            <img src="global culinary diversity.jpeg" alt="Global Cuisine 1">
+            <h2>Global Culinary Diversity</h2>
+            <p>Explore recipes from various cuisines.</p>
+        </div>
+        <div class="featured-box">
+            <img src="recipe sharing.jpeg" alt="Recipe Sharing">
+            <h2>User-Friendly Recipe Sharing</h2>
+            <p>Share your culinary creations with ease.</p>
+        </div>
+        <div class="featured-box">
+            <img src="review and rating.jpeg" alt="Recipe Rating and Reviews">
+            <h2>Recipe Rating and Reviews</h2>
+            <p>Give ratings and reviews.</p>
+        </div>
+    </div>
+
+    <div class="featured-recipes">
+        <h2>Featured Recipes</h2>
+        <div class="recipe-card">
+            <div class="recipe-box">
+                <img src="spicy thai basil chicken.jpeg" alt="Recipe 1">
+                <h3>Spicy Thai Basil Chicken</h3>
+                <p>Delicious Thai dish with a kick!</p>
+                <a href="#">View Recipe</a>
+            </div>
+            <div class="recipe-box">
+                <img src="mango avacado salsa.jpeg" alt="Recipe 2">
+                <h3>Mango Avocado Salsa</h3>
+                <p>Refreshing salsa perfect for summer.</p>
+                <a href="#">View Recipe</a>
+            </div>
+            <div class="recipe-box">
+                <img src="classic tiramisu.jpeg" alt="Recipe 3">
+                <h3>Classic Tiramisu</h3>
+                <p>An Italian dessert to satisfy your sweet tooth.</p>
+                <a href="#">View Recipe</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 FlavorHarbor. All Rights Reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+
+</body>
+</html>
