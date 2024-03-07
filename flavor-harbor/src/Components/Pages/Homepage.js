@@ -1,5 +1,6 @@
 import React from "react";
 import "../../assets/Styles/Homepage.css";
+import { Link } from "react-router-dom";
 // Import images
 import globalCulinaryDiversity from "../../assets/Images/global_culinary diversity.jpeg";
 import recipeSharing from "../../assets/Images/recipe _sharing.jpeg";
@@ -13,8 +14,10 @@ const Homepage = () => {
     <div>
       <div className="hero-section">
         <h1>Explore, Share, and Celebrate Culinary Delights!</h1>
-        <button>Get Started</button>{" "}
-        {/* Assuming you wanted this as a button */}
+
+        <Link className="login-button" to="/Loginpage">
+          Get Started
+        </Link>
       </div>
 
       <div className="featured-section">
