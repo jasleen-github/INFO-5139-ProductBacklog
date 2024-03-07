@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import "../../assets/Styles/Registration.css"; // Correct import path
 import { Link } from "react-router-dom";
 
+//import UserProfile from "./Components/Pages/UserProfile";
+
 import { auth, firestore } from "../../firebaseConfig"; // Import the Firebase authentication object
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+
 
 const Registration = () => {
   // State variables to hold form data
