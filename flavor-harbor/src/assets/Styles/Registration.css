@@ -7,6 +7,8 @@
   background-color: #f9f9f9; /* Same background color as login content */
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: flex; /* Use flexbox to align items */
+  flex-direction: column; /* Align items vertically */
 }
 
 .registration-container h2 {
@@ -71,4 +73,14 @@
 
 .registration-container p button:hover {
   background-color: #ffac33; /* Same as login register button hover background color */
+}
+
+/* Styles for success message */
+.success-message {
+  background-color: #a5d6a7; /* Set background color for success message */
+  color: #2e7d32; /* Set text color for success message */
+  padding: 10px; /* Add padding to the success message */
+  border-radius: 5px; /* Add border radius to the success message */
+  text-align: center; /* Align text to center in the success message */
+  margin-bottom: 20px; /* Add margin to separate from other content */
 }
