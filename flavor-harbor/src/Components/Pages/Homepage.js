@@ -15,7 +15,7 @@ const Homepage = () => {
       <div className="hero-section">
         <h1>Explore, Share, and Celebrate Culinary Delights!</h1>
 
-        <Link className="login-button" to="/Loginpage">
+        <Link className="login-button" to="/UserProfile">
           Get Started
         </Link>
       </div>
