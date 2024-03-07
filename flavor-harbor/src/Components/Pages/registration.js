@@ -1,28 +1,81 @@
-// components/pages/Registration.js
+import React, { useState } from "react";
+import "../../assets/Styles/Registration.css"; // Correct import path
 
-import React, { useState } from 'react';
+import { auth, firestore } from "../../firebaseConfig"; // Import the Firebase authentication object
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
-const Registration = () => {
+const Registration = ({ togglePage }) => {
   // State variables to hold form data
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Function to handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Perform registration logic here, e.g., send data to backend
-    console.log('Form submitted:', { username, email, password });
-    // Clear form fields after submission
-    setUsername('');
-    setEmail('');
-    setPassword('');
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async () => {
+        console.log("User Registered");
+
+        //setting the user Id
+        var userID = auth.currentUser.uid;
+        const userDocRef = doc(firestore, "users/" + userID);
+
+        //(first name, last name, email)
+        const userData = {
+          firstName: firstname,
+          lastName: lastname,
+          username: username,
+          email: email,
+        };
+
+        try {
+          await setDoc(userDocRef, userData);
+          console.log("User data stored successfully in Firestore");
+        } catch (error) {
+          console.error("Error storing user data in Firestore:", error);
+          // Handle the error appropriately
+        }
+      })
+      .catch((error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        if (errorCode === "auth/weak-password") {
+          console.log("Password is too weak.");
+        } else {
+          console.log(errorMessage);
+          console.log(errorMessage);
+        }
+      });
   };
 
   return (
-    <div>
+    <div className="registration-container">
       <h2>Registration</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="firstname">First Name:</label>
+          <input
+            type="text"
+            id="firstname"
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="lastname">Last Name:</label>
+          <input
+            type="text"
+            id="lastname"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
+            required
+          />
+        </div>
         <div>
           <label htmlFor="username">Username:</label>
           <input
@@ -55,6 +108,12 @@ const Registration = () => {
         </div>
         <button type="submit">Register</button>
       </form>
+      <p>
+        Already have an account?{" "}
+        <button onClick={togglePage} className="login-button">
+          Login here
+        </button>
+      </p>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "../../assets/Styles/LoginPage.css"; // Import CSS file for styling
 
-const LoginPage = () => {
+const LoginPage = ({ togglePage }) => {
   // State for input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,30 +18,46 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <div className="login-content">
+        <h2 className="login-title">Welcome Back!</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email" className="login-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="login-input"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="login-label">
+              Password:
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="login-input"
+              required
+            />
+          </div>
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+        <p className="login-footer">
+          Don't have an account?{" "}
+          <button onClick={togglePage} className="register-button">
+            Register here
+          </button>
+        </p>
+      </div>
     </div>
   );
 };
