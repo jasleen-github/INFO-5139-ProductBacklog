@@ -55,7 +55,9 @@ const LoginPage = () => {
         <p className="login-footer">
           Don't have an account?{" "}
           <button className="register-button">
-            <Link to="/registration">Register here</Link>
+            <Link className="register-button" to="/registration">
+              Register here
+            </Link>
           </button>
         </p>
       </div>

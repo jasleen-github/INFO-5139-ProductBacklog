@@ -112,7 +112,9 @@ const Registration = () => {
       <p>
         Already have an account?{" "}
         <button className="login-button">
-          <Link to="/Loginpage">Login here</Link>
+          <Link className="login-button" to="/Loginpage">
+            Login here
+          </Link>
         </button>
       </p>
     </div>
