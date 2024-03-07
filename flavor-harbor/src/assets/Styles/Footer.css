@@ -6,6 +6,9 @@
   text-align: center;
   display: flex; /* Add display flex */
   justify-content: center; /* Center the content horizontally */
+  position: fixed; /* Position the footer */
+  bottom: 0; /* Align the footer to the bottom */
+  width: 100%; /* Ensure the footer spans the full width */
 }
 
 .footer p {
