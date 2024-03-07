@@ -11,17 +11,13 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
-      {/* Wrap Routes with GoogleAuthProvider */}
-      <GoogleAuthProvider>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/Homepage" element={<Homepage />} />
-          <Route path="/Loginpage" element={<LoginPage />} />
-          <Route path="/registration" element={<Registration />} />
-          {/* Add Route for UserProfile */}
-          <Route path="/user-profile" element={<UserProfile />} />
-        </Routes>
-      </GoogleAuthProvider>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/Loginpage" element={<LoginPage />} />
+        <Route path="/registration" element={<Registration />} />
+      </Routes>
+
       <Footer />
     </div>
   );
