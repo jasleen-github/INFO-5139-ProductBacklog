@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../../assets/Styles/LoginPage.css"; // Import CSS file for styling
+import { Link } from "react-router-dom";
 
-const LoginPage = ({ togglePage }) => {
+const LoginPage = () => {
   // State for input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,8 +54,8 @@ const LoginPage = ({ togglePage }) => {
         </form>
         <p className="login-footer">
           Don't have an account?{" "}
-          <button onClick={togglePage} className="register-button">
-            Register here
+          <button className="register-button">
+            <Link to="/registration">Register here</Link>
           </button>
         </p>
       </div>

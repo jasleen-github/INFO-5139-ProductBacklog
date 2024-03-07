@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./Components/Pages/Header";
 import Footer from "./Components/Pages/Footer";
@@ -7,22 +8,15 @@ import Registration from "./Components/Pages/registration";
 import Homepage from "./Components/Pages/Homepage";
 
 const App = () => {
-  const [isLoginPage, setIsLoginPage] = useState(true); // State variable to track whether the user is in the login page
-
-  // Function to switch between registration and login pages
-  const togglePage = () => {
-    setIsLoginPage((prevState) => !prevState);
-  };
-
   return (
     <div className="app-container">
       <Header />
-      <Homepage />
-      {isLoginPage ? (
-        <Login togglePage={togglePage} />
-      ) : (
-        <Registration togglePage={togglePage} />
-      )}
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/Loginpage" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+      </Routes>
       <Footer />
     </div>
   );

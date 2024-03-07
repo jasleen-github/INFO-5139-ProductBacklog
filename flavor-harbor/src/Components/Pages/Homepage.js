@@ -150,10 +150,7 @@ const Homepage = () => {
             <a href="#">View Recipe</a>
           </div>
           <div className="recipe-box">
-            <img
-              src="../../assets/Images/classic_tiramisu.jpeg"
-              alt="Recipe 3"
-            />
+            <img src="./harmony.jpg" alt="Recipe 3" />
             <h3>Classic Tiramisu</h3>
             <p>An Italian dessert to satisfy your sweet tooth.</p>
             <a href="#">View Recipe</a>
