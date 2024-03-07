@@ -77,10 +77,25 @@
 
 /* Styles for success message */
 .success-message {
-  background-color: #a5d6a7; /* Set background color for success message */
-  color: #2e7d32; /* Set text color for success message */
+  background-color: rgba(
+    249,
+    249,
+    249,
+    0.5
+  ); /* Set background color for success message */
+  color: #ffac33; /* Set text color for success message */
   padding: 10px; /* Add padding to the success message */
   border-radius: 5px; /* Add border radius to the success message */
   text-align: center; /* Align text to center in the success message */
-  margin-bottom: 20px; /* Add margin to separate from other content */
+  margin-bottom: 100px; /* Add margin to separate from other content */
+  margin-top: 100px;
+  font-size: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  margin-bottom: 20px;
 }

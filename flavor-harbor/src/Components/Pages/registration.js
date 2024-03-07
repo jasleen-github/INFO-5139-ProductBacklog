@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../assets/Styles/Registration.css"; // Correct import path
 import { Link } from "react-router-dom";
-
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 import { auth, firestore } from "../../firebaseConfig"; // Import the Firebase authentication object
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -55,11 +55,14 @@ const Registration = () => {
       });
   };
   return (
-    <div className="registration-container">
+    <>
       {registrationSuccess ? ( // Show success message if registration was successful
-        <div className="success-message">User registered successfully!</div>
+        <div className="success-message">
+          <IoCheckmarkDoneCircleSharp />
+          User registered successfully!
+        </div>
       ) : (
-        <>
+        <div className="registration-container">
           <h2>Registration</h2>
           <form onSubmit={handleSubmit}>
             <div>
@@ -120,9 +123,9 @@ const Registration = () => {
               <Link to="/Loginpage">Login here</Link>
             </button>
           </p>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
