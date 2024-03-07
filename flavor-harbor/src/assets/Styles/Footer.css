@@ -1,9 +1,11 @@
 /* Footer.css */
 .footer {
-  background-color: #ffd700;
+  background-color: purple;
   color: #fff;
   padding: 20px 0;
   text-align: center;
+  display: flex; /* Add display flex */
+  justify-content: center; /* Center the content horizontally */
 }
 
 .footer p {

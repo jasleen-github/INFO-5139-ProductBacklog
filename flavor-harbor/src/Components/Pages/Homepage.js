@@ -91,7 +91,7 @@
 //   </body>
 // </html>
 import React from "react";
-import "../../assets/Styles/Homepage.css"; // Import your CSS file
+import "../../assets/Styles/Homepage.css";
 
 const Homepage = () => {
   return (
@@ -104,7 +104,7 @@ const Homepage = () => {
       <div className="featured-section">
         <div className="featured-box">
           <img
-            src="../../assets/Images/global culinary diversity.jpeg"
+            src="../../assets/Images/global_culinary_diversity.jpeg"
             alt="Global Cuisine 1"
           />
           <h2>Global Culinary Diversity</h2>
@@ -112,7 +112,7 @@ const Homepage = () => {
         </div>
         <div className="featured-box">
           <img
-            src="../../assets/Images/recipe sharing.jpeg"
+            src="../../assets/Images/recipe_sharing.jpeg"
             alt="Recipe Sharing"
           />
           <h2>User-Friendly Recipe Sharing</h2>
@@ -120,7 +120,7 @@ const Homepage = () => {
         </div>
         <div className="featured-box">
           <img
-            src="../../assets/Images/review and rating.jpeg"
+            src="../../assets/Images/review_and_rating.jpeg"
             alt="Recipe Rating and Reviews"
           />
           <h2>Recipe Rating and Reviews</h2>
@@ -133,7 +133,7 @@ const Homepage = () => {
         <div className="recipe-card">
           <div className="recipe-box">
             <img
-              src="../../assets/Images/spicy thai basil chicken.jpeg"
+              src="../../assets/Images/spicy_thai_basil_chicken.jpeg"
               alt="Recipe 1"
             />
             <h3>Spicy Thai Basil Chicken</h3>
@@ -142,7 +142,7 @@ const Homepage = () => {
           </div>
           <div className="recipe-box">
             <img
-              src="../../assets/Images/mango avacado salsa.jpeg"
+              src="../../assets/Images/mango_avacado_salsa.jpeg"
               alt="Recipe 2"
             />
             <h3>Mango Avocado Salsa</h3>
@@ -151,7 +151,7 @@ const Homepage = () => {
           </div>
           <div className="recipe-box">
             <img
-              src="../../assets/Images/classic tiramisu.jpeg"
+              src="../../assets/Images/classic_tiramisu.jpeg"
               alt="Recipe 3"
             />
             <h3>Classic Tiramisu</h3>
