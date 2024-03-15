@@ -5,6 +5,7 @@ import Header from "./Components/Pages/Header";
 import Homepage from "./Components/Pages/Homepage";
 import Footer from "./Components/Pages/Footer";
 import UserProfile from "./Components/Pages/UserProfile"; // Import UserProfile
+import RecipeForm from "./Components/Pages/RecipeForm";
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
         <Route path="/Loginpage" element={<LoginPage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/RecipeForm" element={<RecipeForm />} />
+
       </Routes>
 
       <Footer />
