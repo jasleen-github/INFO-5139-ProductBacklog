@@ -17,11 +17,23 @@ function RecipeForm() {
       protein: '',
       carbohydrates: '',
     },
-    tags: '',
-    image: '',
+    tags: [],
+    image: null, // For file upload
     notes: '',
     author: '',
     email: '',
+    website: '',
+    source: '',
+    video: '',
+    publishedDate: '',
+    modifiedDate: '',
+    reviews: [],
+    comments: [],
+    likes: 0,
+    shares: 0,
+    favorites: 0,
+    views: 0,
+    featured: false,
   });
 
   const handleInputChange = (e, index) => {
@@ -30,6 +42,11 @@ function RecipeForm() {
       const list = [...recipe.ingredients];
       list[index][e.target.dataset.name] = value;
       setRecipe({ ...recipe, ingredients: list });
+    } else if (name === 'tags') {
+      const tagsArray = value.split(',');
+      setRecipe({ ...recipe, tags: tagsArray });
+    } else if (name === 'image') {
+      setRecipe({ ...recipe, [name]: e.target.files[0] }); // Handle file upload
     } else if (name === 'nutritionalInfo') {
       setRecipe({
         ...recipe,
@@ -52,8 +69,8 @@ function RecipeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to backend or perform further processing
     console.log(recipe);
+    // Add logic to submit the recipe data to the backend or perform further processing
   };
 
   return (
@@ -86,7 +103,23 @@ function RecipeForm() {
       <button type="button" onClick={handleAddIngredient}>Add Ingredient</button>
 
       {/* Other Fields */}
-      {/* Instructions, Category, Cooking Time, Difficulty Level, etc. */}
+      <label>
+        Instructions:
+        <textarea name="instructions" value={recipe.instructions} onChange={handleInputChange} />
+      </label>
+      <label>
+        Category:
+        <input type="text" name="category" value={recipe.category} onChange={handleInputChange} />
+      </label>
+      <label>
+        Cooking Time:
+        <input type="text" name="cookingTime" value={recipe.cookingTime} onChange={handleInputChange} />
+      </label>
+      <label>
+        Image:
+        <input type="file" name="image" onChange={handleInputChange} />
+      </label>
+      {/* Add more fields here */}
 
       <button type="submit">Submit Recipe</button>
     </form>
