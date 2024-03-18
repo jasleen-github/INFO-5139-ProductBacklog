@@ -25,6 +25,9 @@ const Header = () => {
             <li>
               <Link to="/RecipeForm">Create Recipe</Link>
             </li>
+            <li>
+              <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
+            </li>
             {/* <li><Link to="/UserProfile">User Profile</Link></li> */}
           </ul>
         </nav>
