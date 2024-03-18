@@ -1,8 +1,9 @@
 import React from "react";
 import "../../assets/Styles/Homepage.css";
+import { Link } from "react-router-dom";
 // Import images
 import globalCulinaryDiversity from "../../assets/Images/global_culinary diversity.jpeg";
-import recipeSharing from "../../assets/Images/recipe_sharing.jpeg";
+import recipeSharing from "../../assets/Images/recipe _sharing.jpeg";
 import reviewAndRating from "../../assets/Images/review_and_rating.jpeg";
 import spicyThaiBasilChicken from "../../assets/Images/spicy_thai_basil_chicken.jpeg";
 import mangoAvocadoSalsa from "../../assets/Images/mango_avacado_salsa.jpeg";
@@ -13,7 +14,10 @@ const Homepage = () => {
     <div>
       <div className="hero-section">
         <h1>Explore, Share, and Celebrate Culinary Delights!</h1>
-        <button>Get Started</button> {/* Assuming you wanted this as a button */}
+
+        <Link className="login-button" to="/UserProfile">
+          Get Started
+        </Link>
       </div>
 
       <div className="featured-section">
@@ -50,7 +54,7 @@ const Homepage = () => {
             <a href="#">View Recipe</a>
           </div>
           <div className="recipe-box">
-            <img src="./harmony.jpg" alt="Recipe 3" />
+            <img src={classicTiramisu} alt="Recipe 3" />
             <h3>Classic Tiramisu</h3>
             <p>An Italian dessert to satisfy your sweet tooth.</p>
             <a href="#">View Recipe</a>
