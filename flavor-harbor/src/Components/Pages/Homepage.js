@@ -2,8 +2,8 @@ import React from "react";
 import "../../assets/Styles/Homepage.css";
 import { Link } from "react-router-dom";
 // Import images
-import globalCulinaryDiversity from "../../assets/Images/global_culinary diversity.jpeg";
-import recipeSharing from "../../assets/Images/recipe _sharing.jpeg";
+import globalCulinaryDiversity from "../../assets/Images/global_culinary_diversity.jpeg";
+import recipeSharing from "../../assets/Images/recipe_sharing.jpeg";
 import reviewAndRating from "../../assets/Images/review_and_rating.jpeg";
 import spicyThaiBasilChicken from "../../assets/Images/spicy_thai_basil_chicken.jpeg";
 import mangoAvocadoSalsa from "../../assets/Images/mango_avacado_salsa.jpeg";
