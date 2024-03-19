@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { auth, firestore } from "../../firebaseConfig"; // Import auth and firestore objects from your Firebase configuration
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 function RecipeForm() {
   const [recipe, setRecipe] = useState({
@@ -7,7 +10,7 @@ function RecipeForm() {
     instructions: "",
     category: "",
     cookingTime: "",
-    image: null,
+    // image: null,
   });
 
   const handleInputChange = (e, index) => {
@@ -39,10 +42,46 @@ function RecipeForm() {
     setRecipe({ ...recipe, ingredients: list });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(recipe);
-    // Add logic to submit the recipe data to the backend or perform further processing
+
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid; // Obtain the userId of the currently logged-in user
+
+        // Upload image to Firebase Storage
+        const storage = getStorage();
+        const imageRef = ref(storage, `images/${recipe.image.name}`);
+        await uploadBytes(imageRef, recipe.image);
+
+        // Get the download URL of the uploaded image
+        const imageURL = await getDownloadURL(imageRef);
+
+        // Add recipe to Firestore
+        const userDocRef = doc(firestore, "users", userId);
+        const recipesCollectionRef = collection(userDocRef, "recipes");
+        await addDoc(recipesCollectionRef, {
+          ...recipe,
+          image: imageURL, // Store the image URL in the Firestore document
+        });
+
+        console.log("Recipe submitted successfully!");
+        // Reset form after successful submission
+        setRecipe({
+          title: "",
+          ingredients: [{ name: "", quantity: "", unit: "" }],
+          instructions: "",
+          category: "",
+          cookingTime: "",
+          image: null, // Reset image state
+        });
+      } else {
+        console.log("No user logged in");
+      }
+    } catch (error) {
+      console.error("Error submitting recipe:", error);
+    }
   };
 
   return (

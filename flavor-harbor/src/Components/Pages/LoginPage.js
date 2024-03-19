@@ -16,7 +16,7 @@ const LoginPage = () => {
       if (user) {
         console.log("User is logged in:", user); // Add console log
         setIsLoggedIn(true);
-        navigate("/UserProfile");
+        // navigate("/UserProfile");
       } else {
         console.log("User is not logged in"); // Add console log
         setIsLoggedIn(false);
@@ -64,6 +64,7 @@ const LoginPage = () => {
             <button onClick={handleLogout} className="logout-button">
               Logout
             </button>
+            {navigate("/UserProfile")}
           </div>
         ) : (
           <form onSubmit={handleEmailPasswordSubmit}>
