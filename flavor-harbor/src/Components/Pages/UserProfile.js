@@ -1,107 +1,41 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import RecipeForm from "./RecipeForm"; // Import the RecipeForm component
 import "../../assets/Styles/UserProfile.css"; // Correct import path
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebaseConfig"; // Import your firebaseConfig
 
 const UserProfile = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [profile, setProfile] = useState({ username: '', bio: '', avatar: '', website: '' }); // Expanded profile state
+  const [showRecipeForm, setShowRecipeForm] = useState(false); // State to toggle recipe form visibility
+  const [recipes, setRecipes] = useState([]); // State to store existing recipes (hardcoded for now)
 
-  const handleEmailPasswordSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("Successfully logged in with email and password:", userCredential.user);
-      setIsLoggedIn(true);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  const handleProfileSubmit = (e) => {
-    e.preventDefault();
-    // Save profile to database or perform any desired action
-    console.log("Profile saved:", profile);
+  // Function to handle recipe submission
+  const handleRecipeSubmit = (newRecipe) => {
+    setRecipes([...recipes, newRecipe]); // Add the new recipe to the existing list of recipes
+    setShowRecipeForm(false); // Hide the recipe form after submission
   };
 
   return (
     <div className="user-profile">
-      {!isLoggedIn && (
-        <form onSubmit={handleEmailPasswordSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Login with Email/Password</button>
-          {error && <p>{error}</p>}
-        </form>
-      )}
-      {isLoggedIn && (
-        <div>
-          <p>You are now signed in!</p>
-          {/* Profile form */}
-          <form onSubmit={handleProfileSubmit}>
-            <div className="form-group">
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                value={profile.username}
-                onChange={(e) => setProfile({ ...profile, username: e.target.value })}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="bio">Bio:</label>
-              <textarea
-                id="bio"
-                value={profile.bio}
-                onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-                required
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <label htmlFor="avatar">Avatar URL:</label>
-              <input
-                type="text"
-                id="avatar"
-                value={profile.avatar}
-                onChange={(e) => setProfile({ ...profile, avatar: e.target.value })}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="website">Website:</label>
-              <input
-                type="text"
-                id="website"
-                value={profile.website}
-                onChange={(e) => setProfile({ ...profile, website: e.target.value })}
-              />
-            </div>
-            <button type="submit">Save Profile</button>
-          </form>
-        </div>
-      )}
+      <h2>Welcome to Your Profile</h2>
+      <div className="profile-section">
+        <h3>Create Recipe</h3>
+        {showRecipeForm ? (
+          <RecipeForm onSubmit={handleRecipeSubmit} />
+        ) : (
+          <button onClick={() => setShowRecipeForm(true)}>Create Recipe</button>
+        )}
+      </div>
+      <div className="profile-section">
+        <h3>Your Recipes</h3>
+        {recipes.length > 0 ? (
+          <ul>
+            {recipes.map((recipe, index) => (
+              <li key={index}>{recipe.title}</li> // Display recipe titles (replace with actual content)
+            ))}
+          </ul>
+        ) : (
+          <p>No recipes yet.</p>
+        )}
+      </div>
+      {/* Add more profile sections as needed */}
     </div>
   );
 };
