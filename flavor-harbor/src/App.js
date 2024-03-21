@@ -9,7 +9,8 @@ import Footer from "./Components/Pages/Footer";
 import UserProfile from "./Components/Pages/UserProfile"; // Import UserProfile component
 import RecipeForm from "./Components/Pages/RecipeForm";
 import RecipeFeedbackForm from "./Components/Pages/RecipeFeedbackForm";
-import RecipeDetail from "./Components/Pages/RecipeDetail";
+import search from "./Components/Pages/search";
+import Search from "./Components/Pages/search";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track user authentication status
@@ -28,7 +29,7 @@ const App = () => {
         <Route path="/UserProfile" element={<UserProfile />} />{" "}
         <Route path="/RecipeForm" element={<RecipeForm />} />
         <Route path="/RecipeFeedbackForm" element={<RecipeFeedbackForm />} />
-        <Route path="/RecipeDetail/:id" element={<RecipeDetail />} />
+        {/* <Route path="/search" element={<Search />} /> */}
       </Routes>
       <Footer />
     </div>

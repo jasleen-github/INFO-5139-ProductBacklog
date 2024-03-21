@@ -31,12 +31,15 @@ const Header = ({ isLoggedIn }) => {
             <li>
               <Link to="/Registration">Registration</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/RecipeDetail">Recipe Detail</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
             </li>
+            {/* <li>
+              <Link to="/search">search</Link>
+            </li> */}
           </ul>
         </nav>
       </div>

@@ -1,0 +1,47 @@
+/* RecipeForm.css */
+
+.recipe-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.recipe-form-content {
+  width: 400px; /* Adjust width as needed */
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-form-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.recipe-form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.recipe-form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #a18ad6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recipe-form-button:hover {
+  background-color: #7b5ead;
+}
