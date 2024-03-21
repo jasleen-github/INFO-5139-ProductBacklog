@@ -44,16 +44,16 @@ const LoginPage = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      console.log("User logged out successfully"); // Add console log
-      setIsLoggedIn(false);
-      navigate("/Homepage");
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await signOut(auth);
+  //     console.log("User logged out successfully"); // Add console log
+  //     setIsLoggedIn(false);
+  //     //navigate("/Homepage");
+  //   } catch (error) {
+  //     console.error("Error logging out:", error);
+  //   }
+  // };
 
   return (
     <div className="login-container">
@@ -61,9 +61,7 @@ const LoginPage = () => {
         <h2 className="login-title">Welcome Back!</h2>
         {isLoggedIn ? (
           <div>
-            <button onClick={handleLogout} className="logout-button">
-              Logout
-            </button>
+
             {navigate("/UserProfile")}
           </div>
         ) : (

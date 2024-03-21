@@ -43,9 +43,9 @@ const Header = ({ isLoggedIn }) => {
             <li>
               <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/search">search</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
