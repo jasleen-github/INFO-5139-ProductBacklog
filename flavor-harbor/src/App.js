@@ -10,6 +10,8 @@ import UserProfile from "./Components/Pages/UserProfile";
 import RecipeForm from "./Components/Pages/RecipeForm";
 // import RecipeDetail from "./Components/Pages/RecipeDetail";
 import RecipeFeedbackForm from "./Components/Pages/RecipeFeedbackForm";
+import search from "./Components/Pages/search";
+import Search from "./Components/Pages/search";
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
         {/* <Route path="/RecipeForm" element={<RecipeForm />} /> */}
         {/* <Route path="/RecipeDetail" element={<RecipeDetail />} /> */}
         <Route path="/RecipeFeedbackForm" element={<RecipeFeedbackForm />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />
     </div>

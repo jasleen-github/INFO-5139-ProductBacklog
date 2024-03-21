@@ -43,6 +43,9 @@ const Header = ({ isLoggedIn }) => {
             <li>
               <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
             </li>
+            <li>
+              <Link to="/search">search</Link>
+            </li>
           </ul>
         </nav>
       </div>
