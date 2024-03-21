@@ -42,10 +42,16 @@ const UserProfile = () => {
   }, []);
 
   const getRecipeImageURL = async (imagePath) => {
-    const storage = getStorage();
-    const imageRef = ref(storage, imagePath);
-    return await getDownloadURL(imageRef);
+    try {
+      const storage = getStorage();
+      const imageRef = ref(storage, imagePath);
+      return await getDownloadURL(imageRef);
+    } catch (error) {
+      console.error("Error getting image URL:", error);
+      return null; // Return null if there's an error fetching the image URL
+    }
   };
+  
 
   const handleRecipeSubmit = async (newRecipe) => {
     try {
