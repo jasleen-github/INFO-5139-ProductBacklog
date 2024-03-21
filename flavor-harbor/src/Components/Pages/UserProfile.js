@@ -68,8 +68,6 @@ const UserProfile = () => {
     try {
       await signOut(auth);
       navigate("/LoginPage");
-      await signOut(auth);
-      navigate("/LoginPage");
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -83,12 +81,10 @@ const UserProfile = () => {
     <div className="user-profile">
       <h2>Welcome to Your Profile</h2>
       <div className="profile-section">
+        <button onClick={() => setShowRecipeForm(true)}>Create Recipe</button>
         <button onClick={handleLogout}>Logout</button>
-        <h3>Create Recipe</h3>
-        {showRecipeForm ? (
-          <RecipeForm onSubmit={handleRecipeSubmit} />
-        </div>
-      )}
+      </div>
+      {showRecipeForm && <RecipeForm onSubmit={handleRecipeSubmit} />}
       <div className="profile-section">
         <h3>Your Recipes</h3>
         {recipes.length > 0 ? (
