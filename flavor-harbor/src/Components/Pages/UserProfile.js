@@ -1,27 +1,46 @@
-import React, { useState } from "react";
-import { signOut } from "firebase/auth"; // Import signOut function
-import { auth } from "../../firebaseConfig"; // Import auth instance
-import { useNavigate } from "react-router-dom"; // Import navigate function
-import RecipeForm from "./RecipeForm"; // Import the RecipeForm component
-import "../../assets/Styles/UserProfile.css"; // Correct import path
+// UserProfile.js
+import React, { useState, useEffect } from "react";
+import { signOut } from "firebase/auth";
+import { auth, firestore } from "../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import RecipeForm from "./RecipeForm";
+import "../../assets/Styles/UserProfile.css";
 
 const UserProfile = () => {
-  const [showRecipeForm, setShowRecipeForm] = useState(false); // State to toggle recipe form visibility
-  const [recipes, setRecipes] = useState([]); // State to store existing recipes (hardcoded for now)
-  const navigate = useNavigate(); // Initialize the navigate function
+  const [showRecipeForm, setShowRecipeForm] = useState(false);
+  const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate();
 
-  // Function to handle recipe submission
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const userId = user.uid;
+          const recipesRef = firestore.collection("users").doc(userId).collection("recipes");
+          const snapshot = await recipesRef.get();
+          const recipesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setRecipes(recipesData);
+        } else {
+          console.log("No user logged in");
+        }
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
   const handleRecipeSubmit = (newRecipe) => {
-    setRecipes([...recipes, newRecipe]); // Add the new recipe to the existing list of recipes
-    setShowRecipeForm(false); // Hide the recipe form after submission
+    setRecipes([...recipes, newRecipe]);
+    setShowRecipeForm(false);
   };
 
-  // Function to handle user logout
   const handleLogout = async () => {
     try {
-      await signOut(auth); // Call signOut function with the auth instance
-      // Perform any additional logout tasks here, if needed
-      navigate("/LoginPage"); // Navigate to the LoginPage after logout
+      await signOut(auth);
+      navigate("/LoginPage");
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -31,7 +50,7 @@ const UserProfile = () => {
     <div className="user-profile">
       <h2>Welcome to Your Profile</h2>
       <div className="profile-section">
-        <button onClick={handleLogout}>Logout</button> {/* Logout button */}
+        <button onClick={handleLogout}>Logout</button>
         <h3>Create Recipe</h3>
         {showRecipeForm ? (
           <RecipeForm onSubmit={handleRecipeSubmit} />
@@ -44,14 +63,13 @@ const UserProfile = () => {
         {recipes.length > 0 ? (
           <ul>
             {recipes.map((recipe, index) => (
-              <li key={index}>{recipe.title}</li> // Display recipe titles (replace with actual content)
+              <li key={index}>{recipe.title}</li>
             ))}
           </ul>
         ) : (
           <p>No recipes yet.</p>
         )}
       </div>
-      {/* Add more profile sections as needed */}
     </div>
   );
 };
