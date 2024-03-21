@@ -37,9 +37,9 @@ const Header = ({ isLoggedIn }) => {
             {/* <li>
               <Link to="/RecipeForm">Create Recipe</Link>
             </li> */}
-            <li>
+            {/* <li>
               <Link to="/RecipeDetail">Recipe Detail</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
             </li>
