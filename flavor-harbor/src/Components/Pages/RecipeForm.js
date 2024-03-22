@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { auth, firestore } from "../../firebaseConfig"; // Import auth and firestore objects from your Firebase configuration
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import React, { useState } from "react";
+import { auth, firestore } from "../../firebaseConfig";
+import { collection, addDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import "../../assets/Styles/RecipeForm.css";
 
 function RecipeForm() {
   const [recipe, setRecipe] = useState({
@@ -10,7 +11,7 @@ function RecipeForm() {
     instructions: "",
     category: "",
     cookingTime: "",
-    // image: null,
+    image: null,
   });
 
   const handleInputChange = (e, index) => {
@@ -48,33 +49,29 @@ function RecipeForm() {
     try {
       const user = auth.currentUser;
       if (user) {
-        const userId = user.uid; // Obtain the userId of the currently logged-in user
+        const userId = user.uid;
 
-        // Upload image to Firebase Storage
         const storage = getStorage();
         const imageRef = ref(storage, `images/${recipe.image.name}`);
         await uploadBytes(imageRef, recipe.image);
 
-        // Get the download URL of the uploaded image
         const imageURL = await getDownloadURL(imageRef);
 
-        // Add recipe to Firestore
         const userDocRef = doc(firestore, "users", userId);
         const recipesCollectionRef = collection(userDocRef, "recipes");
         await addDoc(recipesCollectionRef, {
           ...recipe,
-          image: imageURL, // Store the image URL in the Firestore document
+          image: imageURL,
         });
 
         console.log("Recipe submitted successfully!");
-        // Reset form after successful submission
         setRecipe({
           title: "",
           ingredients: [{ name: "", quantity: "", unit: "" }],
           instructions: "",
           category: "",
           cookingTime: "",
-          image: null, // Reset image state
+          image: null,
         });
       } else {
         console.log("No user logged in");
@@ -85,96 +82,120 @@ function RecipeForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Recipe Title:
-        <input
-          type="text"
-          name="title"
-          value={recipe.title}
-          onChange={handleInputChange}
-        />
-      </label>
+    <div className="recipe-form-container">
+      <form className="recipe-form-content" onSubmit={handleSubmit}>
+        <h2 className="recipe-form-title">Submit a Recipe</h2>
+        <label className="recipe-form-label">
+          Recipe Title:
+          <input
+            type="text"
+            name="title"
+            value={recipe.title}
+            onChange={handleInputChange}
+            className="recipe-form-input"
+          />
+        </label>
+        {/* Ingredients */}
+        {recipe.ingredients.map((ingredient, index) => (
+          <div key={index}>
+            <label className="recipe-form-label">
+              Ingredient Name:
+              <input
+                type="text"
+                name="ingredients"
+                data-name="name"
+                value={ingredient.name}
+                onChange={(e) => handleInputChange(e, index)}
+                className="recipe-form-input"
+              />
+            </label>
+            <label className="recipe-form-label">
+              Quantity:
+              <input
+                type="text"
+                name="ingredients"
+                data-name="quantity"
+                value={ingredient.quantity}
+                onChange={(e) => handleInputChange(e, index)}
+                className="recipe-form-input"
+              />
+            </label>
+            <label className="recipe-form-label">
+              Unit:
+              <input
+                type="text"
+                name="ingredients"
+                data-name="unit"
+                value={ingredient.unit}
+                onChange={(e) => handleInputChange(e, index)}
+                className="recipe-form-input"
+              />
+            </label>
+            {index > 0 && (
+              <button
+                type="button"
+                onClick={() => handleRemoveIngredient(index)}
+                className="recipe-form-button"
+              >
+                Remove
+              </button>
+            )}
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={handleAddIngredient}
+          className="recipe-form-button"
+        >
+          Add Ingredient
+        </button>
 
-      {/* Ingredients */}
-      {recipe.ingredients.map((ingredient, index) => (
-        <div key={index}>
-          <label>
-            Ingredient Name:
-            <input
-              type="text"
-              name="ingredients"
-              data-name="name"
-              value={ingredient.name}
-              onChange={(e) => handleInputChange(e, index)}
-            />
-          </label>
-          <label>
-            Quantity:
-            <input
-              type="text"
-              name="ingredients"
-              data-name="quantity"
-              value={ingredient.quantity}
-              onChange={(e) => handleInputChange(e, index)}
-            />
-          </label>
-          <label>
-            Unit:
-            <input
-              type="text"
-              name="ingredients"
-              data-name="unit"
-              value={ingredient.unit}
-              onChange={(e) => handleInputChange(e, index)}
-            />
-          </label>
-          {index > 0 && (
-            <button type="button" onClick={() => handleRemoveIngredient(index)}>
-              Remove
-            </button>
-          )}
-        </div>
-      ))}
-      <button type="button" onClick={handleAddIngredient}>
-        Add Ingredient
-      </button>
+        {/* Other Fields */}
+        <label className="recipe-form-label">
+          Instructions:
+          <textarea
+            name="instructions"
+            value={recipe.instructions}
+            onChange={handleInputChange}
+            className="recipe-form-input"
+          />
+        </label>
+        <label className="recipe-form-label">
+          Category:
+          <input
+            type="text"
+            name="category"
+            value={recipe.category}
+            onChange={handleInputChange}
+            className="recipe-form-input"
+          />
+        </label>
+        <label className="recipe-form-label">
+          Cooking Time:
+          <input
+            type="text"
+            name="cookingTime"
+            value={recipe.cookingTime}
+            onChange={handleInputChange}
+            className="recipe-form-input"
+          />
+        </label>
+        <label className="recipe-form-label">
+          Image:
+          <input
+            type="file"
+            name="image"
+            onChange={handleInputChange}
+            className="recipe-form-input"
+          />
+        </label>
 
-      {/* Other Fields */}
-      <label>
-        Instructions:
-        <textarea
-          name="instructions"
-          value={recipe.instructions}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Category:
-        <input
-          type="text"
-          name="category"
-          value={recipe.category}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Cooking Time:
-        <input
-          type="text"
-          name="cookingTime"
-          value={recipe.cookingTime}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Image:
-        <input type="file" name="image" onChange={handleInputChange} />
-      </label>
-
-      <button type="submit">Submit Recipe</button>
-    </form>
+        <button type="submit" className="recipe-form-button">
+          Submit Recipe
+        </button>
+      </form>
+    </div>
   );
 }
 
-export default RecipeForm;
+export default RecipeForm; 
