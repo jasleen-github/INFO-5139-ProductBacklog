@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth, firestore } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import RecipeForm from "./RecipeForm";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import "../../assets/Styles/UserProfile.css";
 
@@ -13,33 +13,38 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          const userId = user.uid;
-          const recipesRef = collection(firestore, "users", userId, "recipes");
-          const snapshot = await getDocs(recipesRef);
-          const fetchedRecipes = snapshot.docs.map(async (doc) => {
-            const recipeData = doc.data();
-            const imageURL = await getRecipeImageURL(recipeData.image);
-            return { id: doc.id, ...recipeData, image: imageURL };
-          });
-          const resolvedRecipes = await Promise.all(fetchedRecipes);
-          setRecipes(resolvedRecipes);
-        } else {
-          console.log("No user logged in");
-        }
-      } catch (error) {
-        console.error("Error fetching recipes:", error);
-      } finally {
-        setLoading(false);
+  const fetchRecipes = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const recipesRef = collection(firestore, "users", userId, "recipes");
+        const snapshot = await getDocs(recipesRef);
+        const fetchedRecipes = snapshot.docs.map(async (doc) => {
+          const recipeData = doc.data();
+          const imageURL = await getRecipeImageURL(recipeData.image);
+          return { id: doc.id, ...recipeData, image: imageURL };
+        });
+        const resolvedRecipes = await Promise.all(fetchedRecipes);
+        setRecipes(resolvedRecipes);
+      } else {
+        console.log("No user logged in");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchRecipes();
-  }, []);
+  useEffect(() => {
+    const fetchAndSetRecipes = async () => {
+      await fetchRecipes();
+    };
+  
+    fetchAndSetRecipes();
+  }, [fetchRecipes]); // Add fetchRecipes as a dependency
+  
 
   const getRecipeImageURL = async (imagePath) => {
     try {
@@ -51,23 +56,12 @@ const UserProfile = () => {
       return null; // Return null if there's an error fetching the image URL
     }
   };
-  
 
-  const handleRecipeSubmit = async (newRecipe) => {
-    try {
-      const user = auth.currentUser;
-      if (user) {
-        const userId = user.uid;
-        const recipesRef = collection(firestore, "users", userId, "recipes");
-        await addDoc(recipesRef, newRecipe);
-        setRecipes([...recipes, newRecipe]);
-        setShowRecipeForm(false);
-      } else {
-        console.log("No user logged in");
-      }
-    } catch (error) {
-      console.error("Error submitting recipe:", error);
-    }
+  const handleRecipeSubmit = async () => {
+    // This function is called by RecipeForm after a new recipe is submitted
+    // Refresh the recipe list to display the new recipe
+    await fetchRecipes();
+    setShowRecipeForm(false); // Hide the recipe form after submitting
   };
 
   const handleLogout = async () => {

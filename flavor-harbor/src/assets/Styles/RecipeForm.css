@@ -1,14 +1,8 @@
 /* RecipeForm.css */
 
 .recipe-form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.recipe-form-content {
-  width: 400px; /* Adjust width as needed */
+  max-width: 600px;
+  margin: 100px auto;
   padding: 40px;
   background-color: #f9f9f9;
   border-radius: 10px;
