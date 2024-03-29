@@ -1,14 +1,15 @@
-/* Footer.css */
 .footer {
   background-color: purple;
   color: #fff;
-  padding: 20px 0;
+  padding: 10px 0; /* Reduce the padding to make the footer smaller */
   text-align: center;
-  display: flex; /* Add display flex */
-  justify-content: center; /* Center the content horizontally */
-  position: fixed; /* Position the footer */
-  bottom: 0; /* Align the footer to the bottom */
-  width: 100%; /* Ensure the footer spans the full width */
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px; /* Adjust the height as needed */
+  z-index: 1000; /* Ensure the footer stays above other content */
 }
 
 .footer p {
@@ -22,4 +23,8 @@
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+.content {
+  margin-bottom: 70px; /* Add margin-bottom to create space for the footer */
 }

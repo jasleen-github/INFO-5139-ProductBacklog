@@ -39,3 +39,31 @@
   font-size: 16px;
   margin-bottom: 8px;
 }
+
+.instructions {
+  background-color: #ffffff; /* White background */
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px; /* Increased margin for separation */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.otherDetails {
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.footer {
+  /* Ensure the footer remains unchanged */
+  background-color: purple;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

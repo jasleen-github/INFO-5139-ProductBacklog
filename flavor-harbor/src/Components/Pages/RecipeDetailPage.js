@@ -1,10 +1,12 @@
+// RecipeDetailPage.js
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { firestore } from "../../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import "../../assets/Styles/RecipeDetail.css";
 
-function RecipeDetailPage() {
+const RecipeDetailPage = () => {
   const { userId, recipeId } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -59,6 +61,6 @@ function RecipeDetailPage() {
       </div>
     </div>
   );
-}
+};
 
 export default RecipeDetailPage;

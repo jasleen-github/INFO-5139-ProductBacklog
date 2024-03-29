@@ -1,10 +1,9 @@
-// Header.js
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../assets/Styles/Header.css";
 import { MdOutlineFoodBank } from "react-icons/md";
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, userId, recipeId }) => { // Pass userId and recipeId as props
   return (
     <header className="header">
       <div className="container">
@@ -20,26 +19,23 @@ const Header = ({ isLoggedIn }) => {
             {isLoggedIn ? (
               <>
                 <li>
-                  <Link to="/UserProfile">Profile</Link> {/* Show UserProfile link when isLoggedIn is true */}
+                  <Link to="/UserProfile">Profile</Link>
+                </li>
+                <li>
+                  <Link to={`/RecipeDetail/${userId}/${recipeId}`}>Recipe Detail</Link>
                 </li>
               </>
             ) : (
               <li>
-                <Link to="/Loginpage">Login</Link>
+                <Link to="/LoginPage">Login</Link>
               </li>
             )}
             <li>
               <Link to="/Registration">Registration</Link>
             </li>
-            {/* <li>
-              <Link to="/RecipeDetail">Recipe Detail</Link>
-            </li> */}
             <li>
-              <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
+              <Link to="/RecipeFeedbackForm">Feedback</Link>
             </li>
-            {/* <li>
-              <Link to="/search">search</Link>
-            </li> */}
           </ul>
         </nav>
       </div>

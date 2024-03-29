@@ -1,4 +1,3 @@
-// RecipeForm.jsx
 import React, { useState } from "react";
 import { auth, firestore } from "../../firebaseConfig";
 import { collection, addDoc, doc } from "firebase/firestore";
@@ -8,6 +7,7 @@ import "../../assets/Styles/RecipeForm.css";
 function RecipeForm({ onSubmit }) {
   const [recipe, setRecipe] = useState({
     title: "",
+    description: "", // Added description field
     ingredients: [{ name: "", quantity: "", unit: "" }],
     instructions: "",
     category: "",
@@ -69,6 +69,7 @@ function RecipeForm({ onSubmit }) {
         onSubmit(); // Notify parent component about the new recipe
         setRecipe({
           title: "",
+          description: "", // Clear description field
           ingredients: [{ name: "", quantity: "", unit: "" }],
           instructions: "",
           category: "",
@@ -97,6 +98,15 @@ function RecipeForm({ onSubmit }) {
             className="recipe-form-input"
           />
         </label>
+        <label className="recipe-form-label">
+          Description:
+          <textarea
+            name="description"
+            value={recipe.description}
+            onChange={handleInputChange}
+            className="recipe-form-input"
+          />
+        </label>
         {/* Ingredients */}
         {recipe.ingredients.map((ingredient, index) => (
           <div key={index}>
@@ -115,12 +125,12 @@ function RecipeForm({ onSubmit }) {
               Quantity:
               <input
                 type="text"
-                name="ingredients"
-                data-name="quantity"
-                value={ingredient.quantity}
-                onChange={(e) => handleInputChange(e, index)}
-                className="recipe-form-input"
-              />
+        name="ingredients"
+        data-name="quantity"
+        value={ingredient.quantity}
+        onChange={(e) => handleInputChange(e, index)}
+        className="recipe-form-input"
+      />
             </label>
             <label className="recipe-form-label">
               Unit:
