@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+// UserProfile.js
+import React, { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth, firestore } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +15,7 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const fetchRecipes = async () => {
+  const fetchRecipes = useCallback(async () => {
     try {
       const user = auth.currentUser;
       if (user) {
@@ -35,16 +37,15 @@ const UserProfile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     const fetchAndSetRecipes = async () => {
       await fetchRecipes();
     };
-  
+
     fetchAndSetRecipes();
-  }, [fetchRecipes]); // Add fetchRecipes as a dependency
-  
+  }, [fetchRecipes]);
 
   const getRecipeImageURL = async (imagePath) => {
     try {
@@ -53,15 +54,13 @@ const UserProfile = () => {
       return await getDownloadURL(imageRef);
     } catch (error) {
       console.error("Error getting image URL:", error);
-      return null; // Return null if there's an error fetching the image URL
+      return null;
     }
   };
 
   const handleRecipeSubmit = async () => {
-    // This function is called by RecipeForm after a new recipe is submitted
-    // Refresh the recipe list to display the new recipe
     await fetchRecipes();
-    setShowRecipeForm(false); // Hide the recipe form after submitting
+    setShowRecipeForm(false);
   };
 
   const handleLogout = async () => {
@@ -91,9 +90,14 @@ const UserProfile = () => {
           <ul className="recipe-list">
             {recipes.map((recipe) => (
               <li key={recipe.id}>
-                <img src={recipe.image} alt="Recipe" />
-                <p>{recipe.title}</p>
-                {/* Display other recipe details as needed */}
+                <Link to={`/RecipeDetail/${recipe.id}`}>
+                  <img src={recipe.image} alt="Recipe" />
+                </Link>
+                <div className="recipe-info">
+                  <Link to={`/RecipeDetail/${recipe.id}`}>
+                    <p>{recipe.title}</p>
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>

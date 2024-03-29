@@ -38,12 +38,13 @@
 
 // export default RecipeDetailPage;
 
-// RecipeDetail.js
+//Recipedetail.js
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { firestore } from "../../firebaseConfig";
+import { firestore } from "../../firebaseConfig"; 
 
-function RecipeDetail() {
+function RecipeDetailPage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -61,24 +62,45 @@ function RecipeDetail() {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching recipe:", error);
+        setLoading(false);
       }
     };
 
     fetchRecipe();
   }, [id]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
-      {loading && <div>Loading...</div>}
-      {recipe && (
+      {recipe ? (
         <div>
           <h2>{recipe.title}</h2>
           <p>Description: {recipe.description}</p>
-          {/* Display other recipe details */}
+          <h3>Ingredients:</h3>
+          <ul>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index}>
+                {ingredient.quantity} {ingredient.unit} {ingredient.name}
+              </li>
+            ))}
+          </ul>
+          <h3>Instructions:</h3>
+          <p>{recipe.instructions}</p>
+          <h3>Other Details:</h3>
+          <p>Category: {recipe.category}</p>
+          <p>Cooking Time: {recipe.cookingTime}</p>
+          <img src={recipe.image} alt="Recipe" style={{ maxWidth: "100%" }} />
         </div>
+      ) : (
+        <div>No recipe found.</div>
       )}
     </div>
   );
 }
 
-export default RecipeDetail;
+export default RecipeDetailPage;
+
+
