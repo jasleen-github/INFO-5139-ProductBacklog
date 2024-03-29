@@ -8,11 +8,8 @@ import Homepage from "./Components/Pages/Homepage";
 import Footer from "./Components/Pages/Footer";
 import UserProfile from "./Components/Pages/UserProfile";
 import RecipeForm from "./Components/Pages/RecipeForm";
-<<<<<<< HEAD
 import RecipeDetail from "./Components/Pages/RecipeDetail";
-=======
-import RecipeFeedbackForm from "./Components/Pages/RecipeFeedbackForm";
->>>>>>> bc6d242d2f2f79db97ece4f5d33ab1a52a12aed6
+import RecipeFeedbackForm from './Components/Pages/RecipeFeedbackForm';
 
 const App = () => {
   return (
@@ -25,12 +22,9 @@ const App = () => {
         <Route path="/Registration" element={<Registration />} />
         <Route path="/UserProfile" element={<UserProfile />} />
         <Route path="/RecipeForm" element={<RecipeForm />} />
-<<<<<<< HEAD
         <Route path="/RecipeDetail" element={<RecipeDetail />} />
-=======
         <Route path="/RecipeFeedbackForm" element={<RecipeFeedbackForm />} />
 
->>>>>>> bc6d242d2f2f79db97ece4f5d33ab1a52a12aed6
       </Routes>
       <Footer />
     </div>
