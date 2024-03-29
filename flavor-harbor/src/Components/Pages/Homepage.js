@@ -1,3 +1,4 @@
+// Homepage.js
 import React from "react";
 import "../../assets/Styles/Homepage.css";
 import { Link } from "react-router-dom";
@@ -14,7 +15,6 @@ const Homepage = () => {
     <div>
       <div className="hero-section">
         <h1>Explore, Share, and Celebrate Culinary Delights!</h1>
-
         <Link className="login-button" to="/Loginpage">
           Get Started
         </Link>
@@ -45,19 +45,19 @@ const Homepage = () => {
             <img src={spicyThaiBasilChicken} alt="Recipe 1" />
             <h3>Spicy Thai Basil Chicken</h3>
             <p>Delicious Thai dish with a kick!</p>
-            <a href="#">View Recipe</a>
+            <Link to="/RecipeDetail/1">View Recipe</Link>
           </div>
           <div className="recipe-box">
             <img src={mangoAvocadoSalsa} alt="Recipe 2" />
             <h3>Mango Avocado Salsa</h3>
             <p>Refreshing salsa perfect for summer.</p>
-            <a href="#">View Recipe</a>
+            <Link to="/RecipeDetail/2">View Recipe</Link>
           </div>
           <div className="recipe-box">
             <img src={classicTiramisu} alt="Recipe 3" />
             <h3>Classic Tiramisu</h3>
             <p>An Italian dessert to satisfy your sweet tooth.</p>
-            <a href="#">View Recipe</a>
+            <Link to="/RecipeDetail/3">View Recipe</Link>
           </div>
         </div>
       </div>

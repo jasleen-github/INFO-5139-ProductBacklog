@@ -1,0 +1,29 @@
+/* search.css */
+
+/* Style the input element */
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Style the button element */
+button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style the results container */
+.search-results {
+  margin-top: 10px;
+}
+
+/* Style individual result items */
+.search-result {
+  margin-bottom: 5px;
+}

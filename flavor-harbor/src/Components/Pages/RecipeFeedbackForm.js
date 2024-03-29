@@ -60,7 +60,7 @@
 
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import "../../assets/Styles/RecipeFeedbackForm.css"; // Import your CSS file
+import "../../assets/Styles/RecipeFeedbackForm.css";
 
 const FeedbackForm = ({ onSubmit }) => {
   const [rating, setRating] = useState(0);

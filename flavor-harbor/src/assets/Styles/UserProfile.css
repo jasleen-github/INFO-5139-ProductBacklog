@@ -1,20 +1,38 @@
+/* UserProfile.css */
 .user-profile {
-  max-width: 400px;
-  margin: 100px auto 20px; /* Adjust margin to center and lower the form */
-  padding: 40px; /* Increase padding for more space */
+  max-width: 600px;
+  margin: 100px auto 20px;
+  padding: 40px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.user-profile h2 {
-  font-size: 24px;
+.profile-heading {
+  font-size: 32px;
+  color: #333;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.user-profile strong {
-  font-weight: bold;
+.user-profile .profile-section {
+  margin-bottom: 30px;
+}
+
+.user-profile .profile-section button {
+  width: 100%;
+  padding: 12px;
+  background-color: #a18ad6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-profile .profile-section button:hover {
+  background-color: #7b5ead;
 }
 
 .user-profile .recipe-list {
@@ -32,66 +50,41 @@
 }
 
 .user-profile .recipe-list li {
-  margin-bottom: 10px;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 
 .user-profile .recipe-list li:last-child {
   border-bottom: none;
 }
 
-.user-profile .form-group {
-  margin-bottom: 30px; /* Increase margin between form fields */
+.user-profile .recipe-list li img {
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 5px;
 }
 
-.user-profile label {
-  display: block;
+.user-profile .recipe-list li p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.recipe-list {
+  list-style: none;
+  padding: 0;
+}
+
+.recipe-list li {
+  font-size: 18px;
+  color: #333;
   margin-bottom: 10px;
-  font-size: 16px;
 }
 
-.user-profile input,
-.user-profile textarea {
-  width: 100%;
-  padding: 12px; /* Increase padding for larger input fields */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.user-profile button {
-  width: 100%;
-  padding: 12px; /* Increase padding for larger buttons */
-  background-color: #a18ad6;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.user-profile button:hover {
-  background-color: #7b5ead;
-}
-
-.user-profile .success-message {
-  background-color: rgba(249, 249, 249, 0.5);
-  color: #ffac33;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  margin-bottom: 100px;
-  margin-top: 100px;
-  font-size: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-profile svg {
-  margin-bottom: 20px;
+/* Add space between buttons */
+.user-profile .profile-section button:first-child {
+  margin-bottom: 10px;
 }
