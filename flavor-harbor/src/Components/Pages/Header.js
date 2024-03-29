@@ -20,7 +20,8 @@ const Header = ({ isLoggedIn }) => {
             {isLoggedIn ? (
               <>
                 <li>
-                  <Link to="/UserProfile">Profile</Link> {/* Show UserProfile link when isLoggedIn is true */}
+                  <Link to="/UserProfile">Profile</Link>{" "}
+                  {/* Show UserProfile link when isLoggedIn is true */}
                 </li>
               </>
             ) : (
@@ -37,9 +38,9 @@ const Header = ({ isLoggedIn }) => {
             <li>
               <Link to="/RecipeFeedbackForm">RecipeFeedbackForm</Link>
             </li>
-            {/* <li>
+            <li>
               <Link to="/search">search</Link>
-            </li> */}
+            </li>
           </ul>
         </nav>
       </div>
