@@ -1,10 +1,11 @@
+// RecipeForm.jsx
 import React, { useState } from "react";
 import { auth, firestore } from "../../firebaseConfig";
 import { collection, addDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "../../assets/Styles/RecipeForm.css";
 
-function RecipeForm() {
+function RecipeForm({ onSubmit }) {
   const [recipe, setRecipe] = useState({
     title: "",
     ingredients: [{ name: "", quantity: "", unit: "" }],
@@ -65,6 +66,7 @@ function RecipeForm() {
         });
 
         console.log("Recipe submitted successfully!");
+        onSubmit(); // Notify parent component about the new recipe
         setRecipe({
           title: "",
           ingredients: [{ name: "", quantity: "", unit: "" }],

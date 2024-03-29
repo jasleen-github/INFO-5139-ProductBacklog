@@ -1,8 +1,11 @@
 /* UserProfile.css */
-
 .user-profile {
-  width: 100%;
+  max-width: 600px;
+  margin: 100px auto 20px;
   padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .profile-heading {
@@ -12,48 +15,62 @@
   margin-bottom: 30px;
 }
 
-.profile-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.user-profile .profile-section {
   margin-bottom: 30px;
 }
 
-.create-recipe-action,
-.logout-action {
-  flex: 1;
-}
-
-.create-recipe-button,
-.logout-button {
+.user-profile .profile-section button {
+  width: 100%;
+  padding: 12px;
   background-color: #a18ad6;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.create-recipe-button:hover,
-.logout-button:hover {
+.user-profile .profile-section button:hover {
   background-color: #7b5ead;
 }
 
-.profile-section {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  padding-bottom: 70px;
-  margin-bottom: 50px;
+.user-profile .recipe-list {
+  margin-top: 20px;
 }
 
-.profile-section h3 {
-  font-size: 24px;
-  color: #333;
+.user-profile .recipe-list h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.user-profile .recipe-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-profile .recipe-list li {
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.user-profile .recipe-list li:last-child {
+  border-bottom: none;
+}
+
+.user-profile .recipe-list li img {
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.user-profile .recipe-list li p {
+  font-size: 16px;
+  margin: 0;
 }
 
 .recipe-list {
@@ -64,5 +81,10 @@
 .recipe-list li {
   font-size: 18px;
   color: #333;
+  margin-bottom: 10px;
+}
+
+/* Add space between buttons */
+.user-profile .profile-section button:first-child {
   margin-bottom: 10px;
 }

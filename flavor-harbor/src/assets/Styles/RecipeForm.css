@@ -1,4 +1,5 @@
 .recipe-form-container {
+<<<<<<< HEAD
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,6 +8,10 @@
 
 .recipe-form-content {
   width: 400px;
+=======
+  max-width: 600px;
+  margin: 100px auto;
+>>>>>>> 19ba9c9b323cdb1673056d683358ad42539e1c51
   padding: 40px;
   background-color: #f9f9f9;
   border-radius: 10px;
