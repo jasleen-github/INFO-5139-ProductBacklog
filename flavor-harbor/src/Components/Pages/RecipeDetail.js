@@ -44,10 +44,25 @@ function RecipeDetailPage() {
   }
 
   return (
-    <div className="container">
+    <div className="recipe-detail-container">
       <h2 className="title">{recipe.title}</h2>
-      {recipe.image && <img src={recipe.image} alt="Recipe" className="image" />}
+      {recipe.image && (
+        <img src={recipe.image} alt="Recipe" className="image" />
+      )}
       <p className="description">Description: {recipe.description}</p>
+      <div className="ingredients">
+        <h3 className="sectionTitle">Ingredients:</h3>
+        <ul>
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>
+              {"Quantity: "}
+              {ingredient.quantity} {"Unit: "}
+              {ingredient.unit} {"Ingredient name: "}
+              {ingredient.name}
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="instructions">
         <h3 className="sectionTitle">Instructions:</h3>
         <p>{recipe.instructions}</p>

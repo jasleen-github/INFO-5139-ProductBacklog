@@ -9,7 +9,7 @@ import UserProfile from "./Components/Pages/UserProfile";
 import RecipeForm from "./Components/Pages/RecipeForm";
 import RecipeFeedbackForm from "./Components/Pages/RecipeFeedbackForm";
 import RecipeDetail from "./Components/Pages/RecipeDetail";
-import RecipeDetailPage from "./Components/Pages/RecipeDetailPage"; // Import RecipeDetailPage
+//import RecipeDetailPage from "./Components/Pages/RecipeDetailPage"; // Import RecipeDetailPage
 import Search from "./Components/Pages/search";
 import { auth } from "./firebaseConfig";
 
@@ -44,17 +44,16 @@ const App = () => {
         <Route
           path="/UserProfile"
           element={
-            isLoggedIn ? (
-              <UserProfile />
-            ) : (
-              <Navigate to="/LoginPage" replace />
-            )
+            isLoggedIn ? <UserProfile /> : <Navigate to="/LoginPage" replace />
           }
         />
         <Route path="/RecipeForm" element={<RecipeForm />} />
         <Route path="/RecipeFeedbackForm" element={<RecipeFeedbackForm />} />
-        <Route path="/RecipeDetail/:userId/:recipeId" element={<RecipeDetail />} />
-        <Route path="/RecipeDetail/:userId/:recipeId" component={RecipeDetailPage} />
+        <Route
+          path="/RecipeDetail/:userId/:recipeId"
+          element={<RecipeDetail />}
+        />
+
         <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />

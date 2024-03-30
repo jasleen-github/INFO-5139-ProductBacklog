@@ -1,26 +1,38 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-}
+/* RecipeDetail.css */
 
-.image {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
+.recipe-detail-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
   border-radius: 10px;
-  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  margin-bottom: 70px; /* Adjust this value according to the height of your footer */
 }
 
 .title {
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .description {
   font-size: 16px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.ingredients {
   margin-bottom: 20px;
 }
 
@@ -28,42 +40,29 @@
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 10px;
-}
-
-.list {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.listItem {
-  font-size: 16px;
-  margin-bottom: 8px;
+  color: #333;
 }
 
 .instructions {
-  background-color: #ffffff; /* White background */
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 30px; /* Increased margin for separation */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  margin-bottom: 20px;
 }
 
 .otherDetails {
-  background-color: #f9f9f9; /* Light grey background */
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  margin-bottom: 20px;
 }
 
-.footer {
-  /* Ensure the footer remains unchanged */
-  background-color: purple;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
 }
