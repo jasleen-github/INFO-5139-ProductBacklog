@@ -11,9 +11,10 @@ import "../../assets/Styles/UserProfile.css";
 const UserProfile = () => {
   const [showRecipeForm, setShowRecipeForm] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // State for loading indicator
   const navigate = useNavigate();
 
+  // Function to fetch recipes
   const fetchRecipes = useCallback(async () => {
     try {
       const user = auth.currentUser;
@@ -34,9 +35,25 @@ const UserProfile = () => {
     } catch (error) {
       console.error("Error fetching recipes:", error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading to false after fetching recipes
     }
   }, []);
+
+  // Function to get recipe image URL
+  const getRecipeImageURL = async (imagePath) => {
+    try {
+      if (!imagePath) {
+        return null;
+      }
+
+      const storage = getStorage();
+      const imageRef = ref(storage, imagePath);
+      return await getDownloadURL(imageRef);
+    } catch (error) {
+      console.error("Error getting image URL:", error);
+      return null;
+    }
+  };
 
   useEffect(() => {
     const fetchAndSetRecipes = async () => {
@@ -46,27 +63,13 @@ const UserProfile = () => {
     fetchAndSetRecipes();
   }, [fetchRecipes]);
 
-  const getRecipeImageURL = async (imagePath) => {
-    try {
-      if (!imagePath) {
-        return null; // Return null if imagePath is not provided
-      }
-  
-      const storage = getStorage();
-      const imageRef = ref(storage, imagePath);
-      return await getDownloadURL(imageRef);
-    } catch (error) {
-      console.error("Error getting image URL:", error);
-      return null;
-    }
-  };
-  
-
+  // Function to handle recipe submission
   const handleRecipeSubmit = async () => {
     await fetchRecipes();
     setShowRecipeForm(false);
   };
 
+  // Function to handle logout
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -76,10 +79,16 @@ const UserProfile = () => {
     }
   };
 
+  // Render loading state if loading is true
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="user-profile">
+        <div className="loading">
+          <div className="loading-spinner"></div>
+        </div>
+      </div>
+    );
   }
-
   return (
     <div className="user-profile">
       <h2>Welcome to Your Profile</h2>
@@ -98,7 +107,9 @@ const UserProfile = () => {
                   <img src={recipe.image} alt="Recipe" />
                 </Link>
                 <div className="recipe-info">
-                  <Link to={`/RecipeDetail/${auth.currentUser.uid}/${recipe.id}`}>
+                  <Link
+                    to={`/RecipeDetail/${auth.currentUser.uid}/${recipe.id}`}
+                  >
                     <p>{recipe.title}</p>
                   </Link>
                 </div>
