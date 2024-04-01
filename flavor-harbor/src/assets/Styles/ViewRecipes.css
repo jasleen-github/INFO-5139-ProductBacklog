@@ -1,7 +1,7 @@
 /* ViewRecipes.css */
 
 .view-recipes {
-  max-width: 800px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -13,10 +13,7 @@
 
 .recipe-list {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(300px, 1fr)
-  ); /* Increase minmax value for wider recipes */
+  grid-template-columns: repeat(3, 1fr); /* Display three recipes in a column */
   gap: 20px;
 }
 
