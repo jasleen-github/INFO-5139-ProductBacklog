@@ -31,8 +31,15 @@ function RecipeDetailPage() {
     fetchRecipe();
   }, [userId, recipeId]);
 
+  // Render loading state if loading is true
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="user-profile">
+        <div className="loading">
+          <div className="loading-spinner"></div>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
