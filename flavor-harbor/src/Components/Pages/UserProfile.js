@@ -1,20 +1,20 @@
+
+
 import React, { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { signOut } from "firebase/auth";
 import { auth, firestore } from "../../firebaseConfig";
-import { useNavigate } from "react-router-dom";
 import RecipeForm from "./RecipeForm";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore"; // Import deleteDoc
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import "../../assets/Styles/UserProfile.css";
 
 const UserProfile = () => {
   const [showRecipeForm, setShowRecipeForm] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true); // State for loading indicator
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
-  // Function to fetch recipes
   const fetchRecipes = useCallback(async () => {
     try {
       const user = auth.currentUser;
@@ -35,11 +35,10 @@ const UserProfile = () => {
     } catch (error) {
       console.error("Error fetching recipes:", error);
     } finally {
-      setLoading(false); // Set loading to false after fetching recipes
+      setLoading(false);
     }
   }, []);
 
-  // Function to get recipe image URL
   const getRecipeImageURL = async (imagePath) => {
     try {
       if (!imagePath) {
@@ -63,23 +62,36 @@ const UserProfile = () => {
     fetchAndSetRecipes();
   }, [fetchRecipes]);
 
-  // Function to handle recipe submission
   const handleRecipeSubmit = async () => {
     await fetchRecipes();
     setShowRecipeForm(false);
   };
 
-  // Function to handle logout
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/LoginPage");
+      navigate("/LoginPage"); // Navigate to LoginPage after logout
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
 
-  // Render loading state if loading is true
+  const handleRecipeDelete = async (recipeId) => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const recipeRef = doc(firestore, "users", userId, "recipes", recipeId);
+        await deleteDoc(recipeRef);
+        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+      } else {
+        console.log("No user logged in");
+      }
+    } catch (error) {
+      console.error("Error deleting recipe:", error);
+    }
+  };
+
   if (loading) {
     return (
       <div className="user-profile">
@@ -107,11 +119,10 @@ const UserProfile = () => {
                   <img src={recipe.image} alt="Recipe" />
                 </Link>
                 <div className="recipe-info">
-                  <Link
-                    to={`/RecipeDetail/${auth.currentUser.uid}/${recipe.id}`}
-                  >
+                  <Link to={`/RecipeDetail/${auth.currentUser.uid}/${recipe.id}`}>
                     <p>{recipe.title}</p>
                   </Link>
+                  <button onClick={() => handleRecipeDelete(recipe.id)}>Delete</button>
                 </div>
               </li>
             ))}
