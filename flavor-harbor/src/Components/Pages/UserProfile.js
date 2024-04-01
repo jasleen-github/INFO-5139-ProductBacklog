@@ -1,4 +1,3 @@
-// UserProfile.js
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -49,6 +48,10 @@ const UserProfile = () => {
 
   const getRecipeImageURL = async (imagePath) => {
     try {
+      if (!imagePath) {
+        return null; // Return null if imagePath is not provided
+      }
+  
       const storage = getStorage();
       const imageRef = ref(storage, imagePath);
       return await getDownloadURL(imageRef);
@@ -57,6 +60,7 @@ const UserProfile = () => {
       return null;
     }
   };
+  
 
   const handleRecipeSubmit = async () => {
     await fetchRecipes();
@@ -90,11 +94,11 @@ const UserProfile = () => {
           <ul className="recipe-list">
             {recipes.map((recipe) => (
               <li key={recipe.id}>
-                <Link to={`/RecipeDetail/${recipe.id}`}>
+                <Link to={`/RecipeDetail/${auth.currentUser.uid}/${recipe.id}`}>
                   <img src={recipe.image} alt="Recipe" />
                 </Link>
                 <div className="recipe-info">
-                  <Link to={`/RecipeDetail/${recipe.id}`}>
+                  <Link to={`/RecipeDetail/${auth.currentUser.uid}/${recipe.id}`}>
                     <p>{recipe.title}</p>
                   </Link>
                 </div>

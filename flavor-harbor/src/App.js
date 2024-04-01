@@ -1,6 +1,5 @@
-// App.js
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom"; // Import Navigate
+import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./Components/Pages/LoginPage";
 import Registration from "./Components/Pages/registration";
 import Header from "./Components/Pages/Header";
@@ -10,19 +9,20 @@ import UserProfile from "./Components/Pages/UserProfile";
 import RecipeForm from "./Components/Pages/RecipeForm";
 import RecipeFeedbackForm from "./Components/Pages/RecipeFeedbackForm";
 import RecipeDetail from "./Components/Pages/RecipeDetail";
+//import RecipeDetailPage from "./Components/Pages/RecipeDetailPage"; // Import RecipeDetailPage
 import Search from "./Components/Pages/search";
-import { auth } from "./firebaseConfig"; // Import auth
+import { auth } from "./firebaseConfig";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsLoggedIn(!!user); // Update isLoggedIn state based on user authentication state
+      setIsLoggedIn(!!user);
     });
 
     return () => unsubscribe();
-  }, []); // Run only once on component mount
+  }, []);
 
   return (
     <div className="app-container">
@@ -44,16 +44,16 @@ const App = () => {
         <Route
           path="/UserProfile"
           element={
-            isLoggedIn ? (
-              <UserProfile />
-            ) : (
-              <Navigate to="/LoginPage" replace />
-            )
+            isLoggedIn ? <UserProfile /> : <Navigate to="/LoginPage" replace />
           }
         />
         <Route path="/RecipeForm" element={<RecipeForm />} />
         <Route path="/RecipeFeedbackForm" element={<RecipeFeedbackForm />} />
-        <Route path="/RecipeDetail/:id" element={<RecipeDetail />} />
+        <Route
+          path="/RecipeDetail/:userId/:recipeId"
+          element={<RecipeDetail />}
+        />
+
         <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />

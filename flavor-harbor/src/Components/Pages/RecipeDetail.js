@@ -1,106 +1,79 @@
-// // RecipeDetail.js
-// import React, { useState, useEffect } from "react";
-// import { firestore } from "../../firebaseConfig"; // Adjust the path based on your file structure
-
-// import RecipeDetail from "./RecipeDetail";
-
-// function RecipeDetailPage({ match }) {
-//   const [recipe, setRecipe] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const recipeId = match.params.id; // Extract recipe ID from the URL
-
-//   useEffect(() => {
-//     const fetchRecipe = async () => {
-//       try {
-//         const recipeRef = firestore.collection("recipes").doc(recipeId);
-//         const doc = await recipeRef.get();
-//         if (doc.exists) {
-//           setRecipe(doc.data());
-//         } else {
-//           console.log("No such document!");
-//         }
-//         setLoading(false);
-//       } catch (error) {
-//         console.error("Error fetching recipe:", error);
-//       }
-//     };
-
-//     fetchRecipe();
-//   }, [recipeId]);
-
-//   return (
-//     <div>
-//       {loading && <div>Loading...</div>}
-//       {recipe && <RecipeDetail recipe={recipe} />}
-//     </div>
-//   );
-// }
-
-// export default RecipeDetailPage;
-
-//Recipedetail.js
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { firestore } from "../../firebaseConfig"; 
+import { firestore } from "../../firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import "../../assets/Styles/RecipeDetail.css";
 
 function RecipeDetailPage() {
-  const { id } = useParams();
+  const { userId, recipeId } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const recipeRef = firestore.collection("recipes").doc(id);
-        const doc = await recipeRef.get();
-        if (doc.exists) {
-          setRecipe(doc.data());
+        const recipeRef = doc(firestore, "users", userId, "recipes", recipeId);
+        const docSnap = await getDoc(recipeRef);
+        if (docSnap.exists()) {
+          setRecipe(docSnap.data());
         } else {
-          console.log("No such document!");
+          setError("Recipe not found");
         }
         setLoading(false);
       } catch (error) {
         console.error("Error fetching recipe:", error);
+        setError("Error fetching recipe");
         setLoading(false);
       }
     };
 
     fetchRecipe();
-  }, [id]);
+  }, [userId, recipeId]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!recipe) {
+    return <div>No recipe found.</div>;
+  }
+
   return (
-    <div>
-      {recipe ? (
-        <div>
-          <h2>{recipe.title}</h2>
-          <p>Description: {recipe.description}</p>
-          <h3>Ingredients:</h3>
-          <ul>
-            {recipe.ingredients.map((ingredient, index) => (
-              <li key={index}>
-                {ingredient.quantity} {ingredient.unit} {ingredient.name}
-              </li>
-            ))}
-          </ul>
-          <h3>Instructions:</h3>
-          <p>{recipe.instructions}</p>
-          <h3>Other Details:</h3>
-          <p>Category: {recipe.category}</p>
-          <p>Cooking Time: {recipe.cookingTime}</p>
-          <img src={recipe.image} alt="Recipe" style={{ maxWidth: "100%" }} />
-        </div>
-      ) : (
-        <div>No recipe found.</div>
+    <div className="recipe-detail-container">
+      <h2 className="title">{recipe.title}</h2>
+      {recipe.image && (
+        <img src={recipe.image} alt="Recipe" className="image" />
       )}
+      <p className="description">Description: {recipe.description}</p>
+      <div className="ingredients">
+        <h3 className="sectionTitle">Ingredients:</h3>
+        <ul>
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>
+              {"Quantity: "}
+              {ingredient.quantity} {"Unit: "}
+              {ingredient.unit} {"Ingredient name: "}
+              {ingredient.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="instructions">
+        <h3 className="sectionTitle">Instructions:</h3>
+        <p>{recipe.instructions}</p>
+      </div>
+      <div className="otherDetails">
+        <h3 className="sectionTitle">Other Details:</h3>
+        <p>Category: {recipe.category}</p>
+        <p>Cooking Time: {recipe.cookingTime}</p>
+      </div>
     </div>
   );
 }
 
 export default RecipeDetailPage;
-
-
