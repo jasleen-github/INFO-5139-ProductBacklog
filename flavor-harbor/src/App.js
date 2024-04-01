@@ -12,6 +12,7 @@ import RecipeDetail from "./Components/Pages/RecipeDetail";
 //import RecipeDetailPage from "./Components/Pages/RecipeDetailPage"; // Import RecipeDetailPage
 import Search from "./Components/Pages/search";
 import { auth } from "./firebaseConfig";
+import ViewRecipes from "./Components/Pages/ViewRecipes";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -55,6 +56,7 @@ const App = () => {
         />
 
         <Route path="/search" element={<Search />} />
+        <Route path="/ViewRecipes" element={<ViewRecipes />} />
       </Routes>
       <Footer />
     </div>
