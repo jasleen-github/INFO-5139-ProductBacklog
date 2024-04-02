@@ -24,23 +24,19 @@ const Header = ({ isLoggedIn, userId, recipeId }) => {
                   <li>
                     <Link to="/UserProfile">Profile</Link>
                   </li>
-                  {/* <li>
-                    <Link to={`/RecipeDetail/${userId}/${recipeId}`}>Recipe Detail</Link>
-                  </li> */}
                 </>
               ) : (
-                <li>
-                  <Link to="/LoginPage">Login</Link>
-                </li>
+                <>
+                  <li>
+                    <Link to="/LoginPage">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/Registration">Registration</Link>
+                  </li>
+                </>
               )}
               <li>
-                <Link to="/Registration">Registration</Link>
-              </li>
-              <li>
-                <Link to="/RecipeFeedbackForm">Feedback</Link>
-              </li>
-              <li>
-                <Link to="/ViewRecipes">View Recipes</Link>
+                <Link to="/ViewRecipes">Most Searched Recipes</Link>
               </li>
             </ul>
           </nav>
