@@ -1,29 +1,140 @@
-/* search.css */
+/* search.css
 
-/* Style the input element */
-input[type="text"] {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 10px;
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* Style the button element */
-button {
+.search-input {
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-button {
   padding: 8px 16px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-/* Style the results container */
+.search-button:hover {
+  background-color: #0056b3;
+}
+
 .search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.search-result {
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-result img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.result-details {
   margin-top: 10px;
 }
 
-/* Style individual result items */
+.result-details h3 {
+  margin: 0;
+}
+
+.result-details p {
+  margin: 5px 0;
+} */
+
+/* working css */
+
+/* search.css */
+
+/* search.css */
+
+.search-container {
+  max-width: 800px;
+  margin: 20px auto; /* Add margin to the top and bottom */
+  text-align: center;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  margin-right: 10px;
+  padding: 10px;
+  width: 300px;
+  border: 3px solid #7d7676;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: purple;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: rgb(61, 3, 61);
+}
+
+.search-results {
+  text-align: left;
+}
+
 .search-result {
-  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-result img {
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.result-details h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.result-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
 }

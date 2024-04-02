@@ -1,7 +1,13 @@
+
+
+
+
+
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { firestore } from "../../firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import "../../assets/Styles/RecipeDetail.css";
 
 function RecipeDetailPage() {
@@ -30,6 +36,17 @@ function RecipeDetailPage() {
 
     fetchRecipe();
   }, [userId, recipeId]);
+
+  const handleDeleteRecipe = async () => {
+    try {
+      await deleteDoc(doc(firestore, "users", userId, "recipes", recipeId));
+      console.log("Recipe deleted successfully!");
+      // Redirect or update UI accordingly after deletion
+    } catch (error) {
+      console.error("Error deleting recipe:", error);
+      setError("Error deleting recipe");
+    }
+  };
 
   // Render loading state if loading is true
   if (loading) {
@@ -79,6 +96,7 @@ function RecipeDetailPage() {
         <p>Category: {recipe.category}</p>
         <p>Cooking Time: {recipe.cookingTime}</p>
       </div>
+      <button onClick={handleDeleteRecipe}>Delete Recipe</button>
     </div>
   );
 }

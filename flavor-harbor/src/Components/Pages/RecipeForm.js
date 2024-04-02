@@ -1,3 +1,10 @@
+
+
+
+
+
+ 
+
 import React, { useState } from "react";
 import { auth, firestore } from "../../firebaseConfig";
 import { collection, addDoc, doc } from "firebase/firestore";
@@ -125,12 +132,12 @@ function RecipeForm({ onSubmit }) {
               Quantity:
               <input
                 type="text"
-        name="ingredients"
-        data-name="quantity"
-        value={ingredient.quantity}
-        onChange={(e) => handleInputChange(e, index)}
-        className="recipe-form-input"
-      />
+                name="ingredients"
+                data-name="quantity"
+                value={ingredient.quantity}
+                onChange={(e) => handleInputChange(e, index)}
+                className="recipe-form-input"
+              />
             </label>
             <label className="recipe-form-label">
               Unit:

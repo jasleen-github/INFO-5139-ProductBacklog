@@ -38,6 +38,9 @@ const Header = ({ isLoggedIn, userId, recipeId }) => {
               <li>
                 <Link to="/ViewRecipes">Most Searched Recipes</Link>
               </li>
+              <li>
+                <Link to="/search">search</Link>
+              </li>
             </ul>
           </nav>
         </div>
